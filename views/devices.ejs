@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Devices</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1 style="color:#587d71">Devices</h1>
+        <form action="/add_device" method="POST">
+            <input type="text" name="name" placeholder="Device Name" required>
+            <input type="text" name="type" placeholder="Device Type" required>
+            <button type="submit">Add Device</button>
+        </form>
+        <ul>
+            <% devices.forEach(device => { %>
+                <li>
+                    <%= device.name %> - Status: <%= device.status %>
+                    <form action="/toggle_device/<%= device.id %>" method="POST">
+                        <button type="submit">Toggle Status</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>
+
+    <div class="container">
+        <h1 style="color:#587d71">Devices and Groups</h1>
+        <!-- Grouping Functionality -->
+        <form action="/add_group" method="POST">
+    <input type="text" name="group_name" placeholder="Group Name" required>
+    <button type="submit">Create Group</button>
+</form>
+
+<form action="/assign_device_to_group" method="POST">
+    <select name="group_id" required>
+        <% groups.forEach(group => { %>
+            <option value="<%= group.id %>"><%= group.name %></option>
+        <% }) %>
+    </select>
+    <select name="device_id" required>
+        <% devices.forEach(device => { %>
+            <option value="<%= device.id %>"><%= device.name %></option>
+        <% }) %>
+    </select>
+    <button type="submit">Assign Device to Group</button>
+</form>
+
+
+        <ul>
+            <% devices.forEach(device => { %>
+                <li>
+                    <%= device.name %> - Status: <%= device.status %>
+                    <form action="/toggle_device/<%= device.id %>" method="POST">
+                        <button type="submit">Toggle Status</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    

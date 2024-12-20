@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Activity Logs</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include('navbar') %>
+    <div class="container">
+        <h1 style="color:#587d71">Activity Logs</h1>
+        <ul>
+            <% logs.forEach(log => { %>
+                <li>
+                    <strong>User:</strong> <%= log.user %> | 
+                    <strong>Action:</strong> <%= log.action %> | 
+                    <strong>Time:</strong> <%= log.timestamp %>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>

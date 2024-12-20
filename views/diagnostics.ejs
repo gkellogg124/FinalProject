@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Diagnostics</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include('navbar') %>
+    <div class="container">
+        <h1 style="color:#587d71">Diagnostics</h1>
+        <ul>
+            <% devices.forEach(device => { %>
+                <li>
+                    <%= device.name %> - Status: <%= device.status %>
+                    <form action="/run_diagnostics/<%= device.id %>" method="POST">
+                        <button type="submit">Run Diagnostics</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>

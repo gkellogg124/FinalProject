@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Schedules</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include('navbar') %>
+    <div class="container">
+        <h1 style="color:#587d71">Schedule Actions</h1>
+        <form action="/add_schedule" method="POST">
+            <select name="device_id" required>
+                <% devices.forEach(device => { %>
+                    <option value="<%= device.id %>"><%= device.name %></option>
+                <% }) %>
+            </select>
+            <select name="action">
+                <option value="on">Turn On</option>
+                <option value="off">Turn Off</option>
+            </select>
+            <input type="datetime-local" name="schedule_time" required>
+            <button type="submit">Add Schedule</button>
+        </form>
+        <ul>
+            <% schedules.forEach(schedule => { %>
+                <li>
+                    <%= schedule.device_name %> - <%= schedule.action === 'on' ? 'Turned On' : 'Turned Off' %> at 
+                    <%= new Date(schedule.schedule_time).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) %>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>
+
+    <h1 style="color:#587d71">Automation Rules</h1>
+    <form action="/add_automation_rule" method="POST">
+        <select name="trigger_device" required>
+            <% devices.forEach(device => { %>
+                <option value="<%= device.id %>"><%= device.name %></option>
+            <% }) %>
+        </select>
+        <select name="action_device" required>
+            <% devices.forEach(device => { %>
+                <option value="<%= device.id %>"><%= device.name %></option>
+            <% }) %>
+        </select>
+        <select name="action">
+            <option value="on">Turn On</option>
+            <option value="off">Turn Off</option>
+        </select>
+        <button type="submit">Create Rule</button>
+    </form>
+<ul>
+    <% rules.forEach(rule => { %>
+        <li>
+            Trigger Device: <strong><%= rule.trigger_device %></strong> |
+            Action Device: <strong><%= rule.action_device %></strong> |
+            Action: <strong><%= rule.action %></strong>
+        </li>
+    <% }) %>
+</ul>
+
+    

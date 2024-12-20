@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Roles</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include('navbar') %>
+    <div class="container">
+        <h1 style="color:#587d71">Modify User Roles</h1>
+        <ul>
+            <% users.forEach(user => { %>
+                <li>
+                    <%= user.username %> - Role: <%= user.role %>
+                    <form action="/modify_role/<%= user.id %>" method="POST">
+                        <select name="role">
+                            <option value="Admin" <%= user.role === 'Admin' ? 'selected' : '' %>>Admin</option>
+                            <option value="Homeowner" <%= user.role === 'Homeowner' ? 'selected' : '' %>>Homeowner</option>
+                            <option value="Technician" <%= user.role === 'Technician' ? 'selected' : '' %>>Technician</option>
+                        </select>
+                        <button type="submit">Update Role</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>

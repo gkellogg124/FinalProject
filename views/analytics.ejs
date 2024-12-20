@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Energy Analytics</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include('navbar') %>
+    <div class="container">
+        <h1 style="color:#587d71">Energy Usage Analytics</h1>
+        <ul>
+            <% energyData.forEach(data => { %>
+                <li>
+                    <strong>Device:</strong> <%= data.device %> | 
+                    <strong>Consumption:</strong> <%= data.consumption %>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>

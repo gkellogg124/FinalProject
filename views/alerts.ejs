@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Alerts</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include('navbar') %>
+    <div class="container">
+        <h1 style="color:#587d71">Alerts</h1>
+        <ul>
+            <% alerts.forEach(alert => { %>
+                <li>
+                    <%= alert.message %> - <%= alert.status %>
+                    <% if (alert.status === 'unread') { %>
+                        <form action="/acknowledge_alert/<%= alert.id %>" method="POST">
+                            <button type="submit">Acknowledge</button>
+                        </form>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</body>
+</html>
+
+    <h1 style="color:#587d71">Critical Alerts</h1>
+<ul>
+    <% critical_alerts.forEach(alert => { %>
+        <li style="color: red;">
+            <%= alert.message %> - <%= alert.status %>
+        </li>
+    <% }) %>
+</ul>
+
+<h1 style="color:#587d71">All Alerts</h1>
+<ul>
+    <% alerts.forEach(alert => { %>
+        <li>
+            <%= alert.message %> - <%= alert.status %>
+        </li>
+    <% }) %>
+</ul>
+
+    
